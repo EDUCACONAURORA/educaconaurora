@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA - Bienestar Femenino</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="Logo.png" alt="Logo" />
+          <h1>AURORA</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#funcionalidades">Funcionalidades</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li>
+              <div
+                id="userInfoContainer"
+                class="user-info"
+                style="display: none"
+              >
+                <div class="user-avatar" id="userAvatar"></div>
+                <span class="user-name" id="userName"></span>
+                <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="inicio" class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h2>Un nuevo comienzo para tu bienestar</h2>
+            <p>
+              AURORA es la claridad que cada mujer se merece en su viaje de
+              autoconocimiento. Como la aurora que ilumina el día, te brindamos
+              apoyo, información y herramientas para acompañar cada fase de tu
+              ciclo menstrual.
+            </p>
+            <button class="cta-button" id="discoverBtn">Descubre más</button>
+          </div>
+          <div class="hero-image">
+            <img src="ciclo-menstrual.png" alt="Ciclo" />
+          </div>
+        </div>
+      </section>
+
+      <section id="beneficios" class="benefits">
+        <div class="container">
+          <h2>¿Qué ofrece AURORA?</h2>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon">🌸</div>
+              <h3>Seguimiento menstrual</h3>
+              <p>
+                Registra y comprende cada fase de tu ciclo con nuestras
+                herramientas intuitivas.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">💡</div>
+              <h3>Información confiable</h3>
+              <p>
+                Accede a contenido verificado sobre salud femenina y bienestar.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">❤️</div>
+              <h3>Autoconocimiento</h3>
+              <p>
+                Conéctate con tu cuerpo y descubre patrones en tu ciclo y
+                emociones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="funcionalidades" class="features">
+        <div class="container">
+          <h2>Funcionalidades principales</h2>
+          <div class="feature">
+            <div class="feature-image">
+              <img
+                src="Calendario.png"
+                alt="Calendario"
+                width="300"
+                height="250"
+              />
+            </div>
+            <div class="feature-content">
+              <h3>Calendario menstrual inteligente</h3>
+              <p>
+                Predice tus próximos periodos, días fértiles y fases del ciclo
+                con precisión.
+              </p>
+              <ul>
+                <li>Registro de síntomas y emociones</li>
+                <li>Recordatorios personalizados</li>
+                <li>Estadísticas y patrones</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contacto">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="Logo.png" alt="Logo" />
+            <h3>AURORA</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces</h4>
+            <ul>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#beneficios">Beneficios</a></li>
+              <li><a href="#funcionalidades">Funcionalidades</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>info@auroraapp.com</p>
+            <div class="social-icons">
+              <img
+                src="facebook.png"
+                width="29"
+                height="29"
+                alt="Logo Facebook"
+              />
+              <img
+                src="instagram.png"
+                width="29"
+                height="29"
+                alt="Logo Instagram"
+              />
+              <img
+                src="whatsapp.png"
+                width="29"
+                height="29"
+                alt="Logo whatsapp"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 AURORA. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal para "Descubre más" -->
+    <div id="infoModal" class="modal">
+      <div id="informodal2" class="modal-content">
+        <span class="close" aria-label="Cerrar modal">&times;</span>
+        <h3>Más sobre AURORA</h3>
+        <p>
+          AURORA es una aplicación diseñada para acompañarte en cada fase de tu
+          ciclo menstrual, proporcionándote herramientas para el
+          autoconocimiento y bienestar integral.
+        </p>
+        <div class="modal-image">
+          <img
+            src="ciclo-menstrual2.png"
+            width="200"
+            height="200"
+            viewBox="0 0 200 200"
+            alt="Ciclo"
+          />
+        </div>
+        <a class="cta-button modal-cta" href="Registrodiario.html">
+          Iniciar registro</a
+        >
+      </div>
+    </div>
+
+    />
+    <script src="usuario.js"></script>
+  </body>
+</html>

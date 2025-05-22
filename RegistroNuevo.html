@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA - Bienestar Femenino</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="/js/script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="Logo.png" alt="Logo" />
+          <h1>AURORA</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="acceso.html">Iniciar Sesión</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="benefits" id="registro">
+      <div class="container">
+        <h2>Registro de Usuarios</h2>
+
+        <div class="benefits-grid">
+          <div class="benefit-card" id="user-list-container">
+            <div class="benefit-icon">👥</div>
+            <h3>Usuarios Registrados</h3>
+            <div class="user-list" id="user-list"></div>
+            <button
+              class="cta-button"
+              id="show-register-btn"
+              style="margin-top: 20px"
+            >
+              Nuevo Usuario
+            </button>
+          </div>
+
+          <div
+            class="benefit-card"
+            id="register-form-container"
+            style="display: none"
+          >
+            <div class="benefit-icon">✏️</div>
+            <h3>Registrar Nuevo Usuario</h3>
+            <form id="user-form">
+              <input
+                type="text"
+                id="name"
+                placeholder="Nombre completo"
+                required
+              />
+              <input
+                type="email"
+                id="email"
+                placeholder="Correo electrónico"
+                required
+              />
+              <input
+                type="text"
+                id="username"
+                placeholder="Nombre de usuario"
+                required
+              />
+              <input
+                type="password"
+                id="password"
+                placeholder="Contraseña"
+                required
+              />
+              <input type="tel" id="phone" placeholder="Teléfono" />
+              <button
+                type="submit"
+                class="cta-button"
+                style="width: 100%; margin-top: 15px"
+              >
+                Guardar Usuario
+              </button>
+            </form>
+            <button
+              id="back-btn"
+              class="cta-button"
+              style="
+                background-color: var(--rosa-claro);
+                width: 100%;
+                margin-top: 10px;
+              "
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <span class="close" aria-label="Cerrar modal">&times;</span>
+        <h3>Información del Sistema</h3>
+        <div class="modal-image">ℹ️</div>
+        <p>
+          Este sistema permite registrar usuarios para acceder a beneficios
+          exclusivos de nuestra comunidad.
+        </p>
+        <p>Los datos se almacenan localmente en tu navegador.</p>
+      </div>
+    </div>
+
+    <footer id="contacto">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="Logo.png" alt="Logo" />
+            <h3>AURORA</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>info@auroraapp.com</p>
+            <div class="social-icons">
+              <img
+                src="facebook.png"
+                width="29"
+                height="29"
+                alt="Logo Facebook"
+              />
+              <img
+                src="instagram.png"
+                width="29"
+                height="29"
+                alt="Logo Instagram"
+              />
+              <img
+                src="whatsapp.png"
+                width="29"
+                height="29"
+                alt="Logo whatsapp"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 AURORA. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sistema de gestión de usuarios
+      document.addEventListener("DOMContentLoaded", function () {
+        // Cargar usuarios existentes
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Elementos del DOM
+        const userListContainer = document.getElementById(
+          "user-list-container"
+        );
+        const registerFormContainer = document.getElementById(
+          "register-form-container"
+        );
+        const showRegisterBtn = document.getElementById("show-register-btn");
+        const backBtn = document.getElementById("back-btn");
+        const userForm = document.getElementById("user-form");
+        const userList = document.getElementById("user-list");
+
+        // Mostrar formulario de registro
+        showRegisterBtn.addEventListener("click", function () {
+          userListContainer.style.display = "none";
+          registerFormContainer.style.display = "block";
+        });
+
+        // Volver a la lista de usuarios
+        backBtn.addEventListener("click", function () {
+          registerFormContainer.style.display = "none";
+          userListContainer.style.display = "block";
+          displayUsers();
+        });
+
+        // Procesar formulario
+        userForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const newUser = {
+            id: Date.now(),
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value,
+            phone: document.getElementById("phone").value,
+            createdAt: new Date().toISOString(),
+          };
+
+          users.push(newUser);
+          localStorage.setItem("users", JSON.stringify(users));
+
+          // Limpiar formulario
+          userForm.reset();
+
+          // Redirigir a acceso.html después de crear el usuario
+          window.location.href = "acceso.html";
+        });
+
+        // Mostrar usuarios
+        function displayUsers() {
+          userList.innerHTML = "";
+
+          if (users.length === 0) {
+            userList.innerHTML =
+              '<p style="color: var(--rosa-medio); margin-top: 15px;">No hay usuarios registrados aún.</p>';
+            return;
+          }
+
+          users.forEach((user) => {
+            const userCard = document.createElement("div");
+            userCard.style.backgroundColor = "white";
+            userCard.style.padding = "15px";
+            userCard.style.borderRadius = "10px";
+            userCard.style.marginBottom = "15px";
+            userCard.style.boxShadow = "0 2px 5px rgba(168, 92, 99, 0.1)";
+
+            userCard.innerHTML = `
+                        <h4 style="color: var(--rosa-oscuro); margin-bottom: 5px;">${
+                          user.name
+                        }</h4>
+                        <p style="color: var(--rosa-medio); font-size: 0.9rem;"><strong>Usuario:</strong> ${
+                          user.username
+                        }</p>
+                        <p style="color: var(--rosa-medio); font-size: 0.9rem;"><strong>Email:</strong> ${
+                          user.email
+                        }</p>
+                        ${
+                          user.phone
+                            ? `<p style="color: var(--rosa-medio); font-size: 0.9rem;"><strong>Teléfono:</strong> ${user.phone}</p>`
+                            : ""
+                        }
+                        <p style="color: var(--rosa-claro); font-size: 0.8rem; margin-top: 5px;">
+                            Registrado el: ${new Date(
+                              user.createdAt
+                            ).toLocaleDateString()}
+                        </p>
+                    `;
+
+            userList.appendChild(userCard);
+          });
+        }
+
+        // Mostrar usuarios al cargar
+        displayUsers();
+        // Control del modal
+        const modal = document.getElementById("infoModal");
+        const closeModal = document.querySelector(".close");
+
+        // Cuando se hace clic en la X, cerrar el modal
+        closeModal.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
+
+        // Cerrar modal si se hace clic fuera del contenido
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

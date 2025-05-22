@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA - Bienestar Femenino</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="Logo.png" alt="Logo" class="flower-logo" />
+          <h1>AURORA</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Sección de Login -->
+    <section class="login-section">
+      <div class="container">
+        <div class="login-container">
+          <div class="login-card">
+            <div class="login-icon">🔑</div>
+            <h2>Iniciar Sesión</h2>
+            <form class="login-form" id="login-form">
+              <input
+                type="text"
+                id="login-username"
+                placeholder="Nombre de usuario"
+                required
+              />
+              <input
+                type="password"
+                id="login-password"
+                placeholder="Contraseña"
+                required
+              />
+              <button type="submit" class="cta-button">Ingresar</button>
+              <button
+                type="button"
+                class="cta-button secondary-button"
+                id="register-btn"
+              >
+                Crear una cuenta
+              </button>
+            </form>
+            <div class="login-links">
+              <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contacto">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="Logo.png" alt="Logo" />
+            <h3>AURORA</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces</h4>
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>info@auroraapp.com</p>
+            <div class="social-icons">
+              <img
+                src="facebook.png"
+                width="29"
+                height="29"
+                alt="Logo Facebook"
+              />
+              <img
+                src="instagram.png"
+                width="29"
+                height="29"
+                alt="Logo Instagram"
+              />
+              <img
+                src="whatsapp.png"
+                width="29"
+                height="29"
+                alt="Logo whatsapp"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 AURORA. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("login-form");
+        const registerBtn = document.getElementById("register-btn");
+
+        // Crear modal de bienvenida
+        const welcomeModal = document.createElement("div");
+        welcomeModal.id = "welcome-modal";
+        welcomeModal.className = "modal";
+        welcomeModal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">🌅</div> 
+            <h3>¡Bienvenida a AURORA!</h3>
+            <p id="welcome-message"></p>
+            <button class="cta-button modal-cta">Continuar</button>
+        </div>
+    `;
+        document.body.appendChild(welcomeModal);
+
+        // Mostrar modal de bienvenida personalizado
+        function showWelcomeMessage(userName) {
+          const welcomeMessage = document.getElementById("welcome-message");
+          welcomeMessage.innerHTML = `
+            <p>Hola <strong>${userName}</strong>,</p>
+            <p>Como la aurora que marca el comienzo de un nuevo día, AURORA te da la bienvenida a este espacio seguro donde podrás comprender y vivir tu ciclo con plena conciencia.</p>
+            <p>Estamos aquí para acompañarte en cada fase, brindándote información clara y herramientas para tu bienestar integral.</p>
+            <p>¡Empieza este viaje de autoconocimiento y empoderamiento!</p>
+        `;
+
+          document.getElementById("welcome-modal").style.display = "flex";
+        }
+
+        // Cerrar modal
+        document
+          .querySelector(".close-modal")
+          .addEventListener("click", function () {
+            welcomeModal.style.display = "none";
+            window.location.href = "Home.html";
+          });
+
+        document
+          .querySelector(".modal-cta")
+          .addEventListener("click", function () {
+            welcomeModal.style.display = "none";
+            window.location.href = "Home.html";
+          });
+
+        // Manejar el envío del formulario de login
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("login-username").value;
+          const password = document.getElementById("login-password").value;
+
+          // Obtener usuarios del localStorage
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+
+          // Buscar usuario
+          const user = users.find(
+            (u) => u.username === username && u.password === password
+          );
+
+          if (user) {
+            // Login exitoso - Mostrar mensaje personalizado
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            showWelcomeMessage(user.name);
+          } else {
+            // Login fallido
+            alert(
+              "Usuario o contraseña incorrectos. Por favor, verifica tus credenciales."
+            );
+          }
+        });
+
+        // Redirigir al formulario de registro
+        registerBtn.addEventListener("click", function () {
+          window.location.href = "RegistroNuevo.html";
+        });
+      });
+    </script>
+  </body>
+</html>

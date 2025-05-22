@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA - Seguimiento Menstrual</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2"></script>
+    <script src="Registrodiario.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="Logo.png" alt="Logo" />
+          <h1>AURORA</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Inicio</a></li>
+            <li><a href="ChatIA.html">Chat IA</a></li>
+            <li>
+              <div
+                id="userInfoContainer"
+                class="user-info"
+                style="display: none"
+              >
+                <div class="user-avatar" id="userAvatar"></div>
+                <span class="user-name" id="userName"></span>
+                <button id="logoutBtn" class="logout-btn">Cerrar sesión</button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="register-page">
+      <div class="container">
+        <h2>Registro y Seguimiento Menstrual</h2>
+
+        <div class="dashboard-container">
+          <div class="calendar-section">
+            <div class="calendar-header">
+              <button id="prev-month">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <h3 id="current-month">Mes 2023</h3>
+              <button id="next-month">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <div class="calendar-grid" id="calendar">
+              <!-- Días generados dinámicamente con JavaScript -->
+            </div>
+            <div class="calendar-legend">
+              <div class="legend-item">
+                  <span class="legend-color menstruation"></span> Menstruación
+              </div>
+              <div class="legend-item">
+                  <span class="legend-color fertile"></span> Ventana fértil
+              </div>
+              <div class="legend-item">
+                  <span class="legend-color ovulation"></span> Ovulación
+              </div>
+          </div>
+
+          <div class="entry-form">
+            <h3 id="selected-date">Selecciona una fecha</h3>
+
+            <form id="daily-form">
+              <div class="form-section">
+                <h4><i class="fas fa-calendar-alt"></i> Ciclo Menstrual</h4>
+                <div class="form-group">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      name="menstruation"
+                      id="menstruation-checkbox"
+                    />
+                    <span class="checkmark"></span>
+                    Día de menstruación
+                  </label>
+                  <div
+                    id="menstruation-days-info"
+                    class="menstruation-days-info"
+                  >
+                    <small
+                      >Días consecutivos:
+                      <span id="consecutive-days">0</span></small
+                    >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Flujo menstrual:</label>
+                  <div class="flow-options">
+                    <label class="radio-option">
+                      <input type="radio" name="flow" value="light" />
+                      <span class="radio-dot"></span>
+                      <i class="fas fa-tint light-flow"></i> Leve
+                    </label>
+                    <label class="radio-option">
+                      <input type="radio" name="flow" value="medium" />
+                      <span class="radio-dot"></span>
+                      <i class="fas fa-tint medium-flow"></i> Moderado
+                    </label>
+                    <label class="radio-option">
+                      <input type="radio" name="flow" value="heavy" />
+                      <span class="radio-dot"></span>
+                      <i class="fas fa-tint heavy-flow"></i> Abundante
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Síntomas:</label>
+                  <div class="symptoms-grid">
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="cramps" />
+                      <span class="symptom-checkmark"></span>
+                      <i class="fas fa-bolt"></i> Cólicos
+                    </label>
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="headache" />
+                      <span class="symptom-checkmark"></span>
+                      <i class="fas fa-head-side-virus"></i> Dolor cabeza
+                    </label>
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="fatigue" />
+                      <span class="symptom-checkmark"></span>
+                      <i class="fas fa-bed"></i> Fatiga
+                    </label>
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="mood" />
+                      <span class="symptom-checkmark"></span>
+                      <i class="fas fa-smile"></i> Cambios humor
+                    </label>
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="bloating" />
+                      <span class="symptom-checkmark"></span>
+                      <i class="fas fa-weight"></i> Hinchazón
+                    </label>
+                    <label class="symptom-option">
+                      <input type="checkbox" name="symptoms" value="acne" />
+                      <span class="symptom-checkmark"></span>
+                      <i class="fas fa-allergies"></i> Acné
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h4><i class="fas fa-heart"></i> Estado Emocional</h4>
+                <div class="form-group">
+                  <label>Emoción predominante:</label>
+                  <div class="emotion-options">
+                    <label class="emotion-option" data-emotion="happy">
+                      <input type="radio" name="emotion" value="happy" />
+                      <span>😊</span>
+                      Feliz
+                    </label>
+                    <label class="emotion-option" data-emotion="sad">
+                      <input type="radio" name="emotion" value="sad" />
+                      <span>😢</span>
+                      Triste
+                    </label>
+                    <label class="emotion-option" data-emotion="angry">
+                      <input type="radio" name="emotion" value="angry" />
+                      <span>😠</span>
+                      Enojada
+                    </label>
+                    <label class="emotion-option" data-emotion="anxious">
+                      <input type="radio" name="emotion" value="anxious" />
+                      <span>😰</span>
+                      Ansiosa
+                    </label>
+                    <label class="emotion-option" data-emotion="calm">
+                      <input type="radio" name="emotion" value="calm" />
+                      <span>😌</span>
+                      Tranquila
+                    </label>
+                    <label class="emotion-option" data-emotion="tired">
+                      <input type="radio" name="emotion" value="tired" />
+                      <span>😴</span>
+                      Cansada
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="energy-level">Nivel de energía (1-10):</label>
+                  <div class="slider-container">
+                    <input
+                      type="range"
+                      id="energy-level"
+                      name="energy"
+                      min="1"
+                      max="10"
+                      value="5"
+                      class="slider"
+                    />
+                    <div class="slider-labels">
+                      <span>1</span>
+                      <span>5</span>
+                      <span>10</span>
+                    </div>
+                  </div>
+                  <div class="energy-display">
+                    <span id="energy-value">5</span>/10
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="notes"><i class="fas fa-edit"></i> Notas:</label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    rows="3"
+                    placeholder="Cómo te sientes hoy, síntomas adicionales..."
+                  ></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="cta-button">
+                <i class="fas fa-save"></i> Guardar registro
+              </button>
+            </form>
+          </div>
+
+          <div class="prediction-section">
+            <div class="cycle-visualization">
+              <h3><i class="fas fa-chart-line"></i> Tu Ciclo Menstrual</h3>
+              <div class="cycle-phase-info">
+                <div class="phase-details" id="current-phase-info">
+                  <p>Selecciona una fecha para ver detalles de la fase</p>
+                </div>
+                <div class="chart-container">
+                  <canvas id="cycle-chart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="prediction-card">
+              <div class="prediction-header">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Predicciones y Estadísticas</h3>
+              </div>
+              <div class="prediction-content">
+                <div class="stat-item">
+                  <div class="stat-label">Estado del ciclo:</div>
+                  <div class="stat-value" id="cycle-regularity">--</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-label">Duración promedio:</div>
+                  <div class="stat-value" id="cycle-length">-- días</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-label">Próximo período:</div>
+                  <div class="stat-value" id="next-period">--</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-label">Ventana fértil:</div>
+                  <div class="stat-value" id="fertility-window">--</div>
+                </div>
+              </div>
+              <div class="prediction-explanation" id="prediction-text">
+                Registra al menos 3 días de menstruación para obtener
+                predicciones personalizadas.
+              </div>
+            </div>
+
+            <div class="educational-tips">
+              <h3><i class="fas fa-lightbulb"></i> Consejos para esta fase</h3>
+              <div class="tips-content" id="phase-tips">
+                <p>
+                  Comienza a registrar tu ciclo para recibir consejos
+                  personalizados.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="contacto">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="Logo.png" alt="Logo" />
+            <h3>AURORA</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces</h4>
+            <ul>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#beneficios">Beneficios</a></li>
+              <li><a href="#funcionalidades">Funcionalidades</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>info@auroraapp.com</p>
+            <div class="social-icons">
+              <img
+                src="facebook.png"
+                width="29"
+                height="29"
+                alt="Logo Facebook"
+              />
+              <img
+                src="instagram.png"
+                width="29"
+                height="29"
+                alt="Logo Instagram"
+              />
+              <img
+                src="whatsapp.png"
+                width="29"
+                height="29"
+                alt="Logo whatsapp"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 AURORA. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="usuario.js"></script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURORA - Bienestar Femenino</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="ChatIA.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <img src="Logo.png" alt="Logo" />
+          <h1>AURORA</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="Home.html">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#chat">Chat IA</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="inicio" class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h2>Consulta con IA especializada en salud femenina</h2>
+            <p>
+              Obtén respuestas inmediatas sobre menstruación, anticoncepción y
+              bienestar emocional.
+            </p>
+            <a href="#chat" class="cta-button">Prueba ahora</a>
+          </div>
+          <div class="hero-image">
+            <img src="ChatIA.png" alt="Mujer consultando salud" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Servicios -->
+      <section id="servicios" class="benefits">
+        <div class="container">
+          <h2>Nuestros Servicios</h2>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon">👩‍⚕️</div>
+              <h3>Ginecología Virtual</h3>
+              <p>
+                Resuelve dudas sobre menstruación, anticonceptivos o
+                infecciones.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🧠</div>
+              <h3>Apoyo Psicológico</h3>
+              <p>Analiza cambios emocionales durante tu ciclo menstrual.</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">📚</div>
+              <h3>Educación Menstrual</h3>
+              <p>Aprende sobre fases del ciclo, síntomas y autocuidado.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chatbot -->
+      <section id="chat" class="features">
+        <div class="container">
+          <h2>Chatea con nuestra IA</h2>
+          <div class="prediction-section">
+            <div class="chatbot-container">
+              <div class="chatbot-header">
+                <span>Elige un especialista:</span>
+                <select id="expert-type">
+                  <option value="ginecologo">Ginecólogo/a</option>
+                  <option value="psicologo">Psicólogo/a</option>
+                </select>
+              </div>
+              <div id="chat-messages" class="chat-messages"></div>
+              <div class="disclaimer">
+                <p>
+                  ⚠️ <strong>Importante</strong>: Este proyecto es educativo.
+                  Las respuestas son generadas por IA y no constituyen consejo
+                  médico profesional. Consulta siempre con un especialista
+                  certificado.
+                </p>
+              </div>
+              <div class="chatbot-input">
+                <input
+                  type="text"
+                  id="user-input"
+                  placeholder="Escribe tu pregunta..."
+                />
+
+                <button id="send-btn" class="cta-button">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contacto">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="Logo.png" alt="Logo" />
+            <h3>AURORA</h3>
+          </div>
+          <div class="footer-links">
+            <h4>Enlaces</h4>
+            <ul>
+              <li><a href="home.html">Inicio</a></li>
+              <li><a href="#servicios">Servicios</a></li>
+              <li><a href="#chat">Chat IA</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4>Contacto</h4>
+            <p>info@auroraapp.com</p>
+            <div class="social-icons">
+              <img
+                src="facebook.png"
+                width="29"
+                height="29"
+                alt="Logo Facebook"
+              />
+              <img
+                src="instagram.png"
+                width="29"
+                height="29"
+                alt="Logo Instagram"
+              />
+              <img
+                src="whatsapp.png"
+                width="29"
+                height="29"
+                alt="Logo whatsapp"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 AURORA. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
